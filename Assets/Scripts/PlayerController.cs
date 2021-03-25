@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(WeaponController))]
 [RequireComponent(typeof(LauncherController))]
 [RequireComponent(typeof(JumpController))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     #region Singleton
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private WeaponController weapon;
     private LauncherController launcher;
     private JumpController jump;
+    private new Rigidbody rigidbody;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviour
         mainCamera = Camera.main;
         weapon = GetComponent<WeaponController>();
         launcher = GetComponent<LauncherController>();
+        rigidbody = GetComponent<Rigidbody>();
         jump = GetComponent<JumpController>();
     }
 
@@ -81,9 +84,9 @@ public class PlayerController : MonoBehaviour
         angleY += my * Time.deltaTime * visionSensibility;
         angleY = Mathf.Clamp(angleY, -maxUp, maxUp);
 
-        transform.Translate(x * moveSpeed * Time.deltaTime, 0f, z * moveSpeed * Time.deltaTime, Space.Self);
         transform.rotation = Quaternion.AngleAxis(angleX, Vector3.up);
         weaponArm.localRotation = Quaternion.AngleAxis(angleY, Vector3.left);
+        rigidbody.velocity = transform.rotation * new Vector3(x * moveSpeed, rigidbody.velocity.y, z * moveSpeed);
     }
 
     private void LateUpdate()
