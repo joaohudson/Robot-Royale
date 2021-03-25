@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(CharacterState))]
 [RequireComponent(typeof(WeaponController))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemieAI : MonoBehaviour
 {
     [SerializeField]
@@ -28,6 +30,7 @@ public class EnemieAI : MonoBehaviour
     private WeaponController weapon;
     private CharacterState playerState;
     private CharacterState state;
+    private NavMeshAgent motor;
 
     private void Start()
     {
@@ -35,6 +38,11 @@ public class EnemieAI : MonoBehaviour
         state = GetComponent<CharacterState>();
         playerState = PlayerController.Instance.GetComponent<CharacterState>();
         weapon = GetComponent<WeaponController>();
+        motor = GetComponent<NavMeshAgent>();
+
+        motor.speed = moveSpeed;
+        motor.stoppingDistance = attackRange;
+        motor.Warp(transform.position);
     }
 
     private void Update()
@@ -94,7 +102,7 @@ public class EnemieAI : MonoBehaviour
             behaviour = Behaviour.IDLE;
         }
 
-        transform.position += moveSpeed * Time.deltaTime * DirectionToPlayer;
+        motor.SetDestination(playerState.transform.position);
     }
 
     private void UpdateAttack()
