@@ -7,6 +7,8 @@ public class CharacterState : MonoBehaviour
 {
     [SerializeField]
     private int maxHealth;
+    [SerializeField]
+    private bool showDamage;
 
     private int health;
     
@@ -32,10 +34,15 @@ public class CharacterState : MonoBehaviour
 
     public void TakeDamage(int damage, float criticalChance)
     {
-        if(UnityEngine.Random.Range(0f, 1f) <= criticalChance)
+        bool critical = UnityEngine.Random.Range(0f, 1f) <= criticalChance;
+        
+        if (critical)
             damage *= 2;
 
         Health -= damage;
+
+        if(showDamage)
+            DamageTextManager.Instance.AddDamageText(transform.position, damage, critical);
     }
 
     private void Awake()
