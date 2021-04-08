@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10000
+  showDamage: 0
 --- !u!114 &36007952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12396,7 +12397,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -18594,6 +18595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  showDamage: 1
 --- !u!4 &1455235707
 Transform:
   m_ObjectHideFlags: 0
@@ -18798,6 +18800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
+  showDamage: 1
 --- !u!114 &1577339923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18883,6 +18886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  showDamage: 1
 --- !u!4 &1578698688
 Transform:
   m_ObjectHideFlags: 0
@@ -18896,7 +18900,7 @@ Transform:
   m_Children:
   - {fileID: 324580172}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1578698689
 CapsuleCollider:
@@ -19478,6 +19482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  showDamage: 1
 --- !u!4 &1652054192
 Transform:
   m_ObjectHideFlags: 0
@@ -19799,7 +19804,7 @@ Transform:
   - {fileID: 1649632739}
   - {fileID: 1699782481}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1817883589
 GameObject:
