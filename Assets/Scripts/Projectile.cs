@@ -46,7 +46,7 @@ public class Projectile : MonoBehaviour
                 if(explosionRadius == 0f)
                 {
                     var state = cd.GetComponent<CharacterState>();
-                    CombatLogic.TakeDamage(state, info.damage, info.criticalChance);
+                    state.TakeDamage(info.damage, info.criticalChance);
                 }
                 break;
             }
@@ -70,7 +70,7 @@ public class Projectile : MonoBehaviour
             if (cd.CompareTag(target))
             {
                 var state = cd.GetComponent<CharacterState>();
-                CombatLogic.TakeDamage(state, info.damage, info.criticalChance);
+                state.TakeDamage(info.damage, info.criticalChance);
             }
         }
 

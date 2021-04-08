@@ -126,7 +126,7 @@ public class WeaponController : MonoBehaviour
                 if (hit.collider.CompareTag(target))
                 {
                     var state = hit.collider.GetComponent<CharacterState>();
-                    CombatLogic.TakeDamage(state, projectile.damage, projectile.criticalChance);
+                    state.TakeDamage(projectile.damage, projectile.criticalChance);
                 }
                 Instantiate(projectile.impactEffectPrefab, hit.point, Quaternion.identity, hit.collider.transform);
             }

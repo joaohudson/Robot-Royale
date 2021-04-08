@@ -36,7 +36,7 @@ public class Grenade : MonoBehaviour
             if (cd.CompareTag(target))
             {
                 var state = cd.GetComponent<CharacterState>();
-                CombatLogic.TakeDamage(state, damage, 0f);
+                state.TakeDamage(damage, 0f);
             }
         }
 
