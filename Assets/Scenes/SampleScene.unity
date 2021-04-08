@@ -12109,7 +12109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff79069d8bbf7a4480bf4fa04a06220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textPrefab: {fileID: 3629507490423298101, guid: 8554c5f1756a73e449571ce358ff71e1,
+  damageText: {fileID: 3279521104610301343, guid: 8554c5f1756a73e449571ce358ff71e1,
     type: 3}
   canvas: {fileID: 447805883}
 --- !u!1 &872573757
