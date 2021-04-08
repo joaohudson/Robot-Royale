@@ -21,8 +21,10 @@ public class LauncherController : MonoBehaviour
         interval = Interval();
         StartCoroutine(interval);
 
+        float inclination = Mathf.Clamp(launchPoint.transform.position.y - transform.position.y, 0f, 1f) * 15f;
+        float force = inclination + 20f;
         var obj = Instantiate(trowable, launchPoint.position, Quaternion.LookRotation(launchPoint.forward, launchPoint.up));
-        obj.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 15, ForceMode.Impulse);
+        obj.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * force, ForceMode.Impulse);
     }
 
     IEnumerator Interval()
