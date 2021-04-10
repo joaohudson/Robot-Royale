@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bilboard.cs" />
     <Compile Include="Assets\Scripts\CharacterState.cs" />
+    <Compile Include="Assets\Scripts\DamageScreenEffect.cs" />
     <Compile Include="Assets\Scripts\DamageText.cs" />
     <Compile Include="Assets\Scripts\DamageTextManager.cs" />
     <Compile Include="Assets\Scripts\DestroyInTime.cs" />
