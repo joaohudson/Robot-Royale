@@ -3,6 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public struct DamageEvent
+{
+    /// <summary>
+    /// Valor do dano causado.
+    /// </summary>
+    public int damage;
+    /// <summary>
+    /// Se foi crítico.
+    /// </summary>
+    public bool critical;
+}
+
 public class CharacterState : MonoBehaviour
 {
     [SerializeField]
@@ -12,7 +24,15 @@ public class CharacterState : MonoBehaviour
 
     private int health;
     
+    /// <summary>
+    /// Chamado quando a vida deste personagem mudar.
+    /// </summary>
     public event Action OnChangeHealth;
+
+    /// <summary>
+    /// Chamado quando este personagem receber dano.
+    /// </summary>
+    public event Action<DamageEvent> OnDamage;
 
     /// <summary>
     /// Vida atual do personagem.
@@ -40,6 +60,8 @@ public class CharacterState : MonoBehaviour
             damage *= 2;
 
         Health -= damage;
+
+        OnDamage?.Invoke(new DamageEvent() { damage = damage, critical = critical});
 
         if(showDamage)
             DamageTextManager.Instance.AddDamageText(transform.position, damage, critical);
