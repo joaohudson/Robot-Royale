@@ -7,7 +7,7 @@ public class DamageText : MonoBehaviour
 {
     [SerializeField]
     private Text text;
-    
+
     // Start is called before the first frame update
     public void Build(int damage, Color color)
     {

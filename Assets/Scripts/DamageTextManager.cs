@@ -19,17 +19,14 @@ public class DamageTextManager : MonoBehaviour
     private DamageText damageText;
     [SerializeField]
     private Transform canvas;
-
-    private Camera mainCamera;
-
-    private void Start()
-    {
-        mainCamera = Camera.main;
-    }
+    [SerializeField]
+    private Color defaultDamageColor;
+    [SerializeField]
+    private Color criticalDamageColor;
 
     public void AddDamageText(Vector3 position, int value, bool critical)
     {
         var obj = Instantiate(damageText, position + Vector3.right * Random.Range(-.5f, .5f), Quaternion.identity, canvas);
-        obj.GetComponent<DamageText>().Build(value, critical ? Color.yellow : Color.red);
+        obj.GetComponent<DamageText>().Build(value, critical ? criticalDamageColor : defaultDamageColor);
     }
 }
