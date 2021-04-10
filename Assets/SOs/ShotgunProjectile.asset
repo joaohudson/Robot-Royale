@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa796bf006eb9984fa41b5699b86804d, type: 3}
+  m_Name: ShotgunProjectile
+  m_EditorClassIdentifier: 
+  damage: 12
+  criticalChance: 0.29
+  fireRate: 1
+  spreadAmount: 8
+  spreadAngle: 5
+  count: 10
+  range: 100
+  effectPrefab: {fileID: 3818989462859787515, guid: 3123f2a7d6ccf374180d2e395cfabc5e,
+    type: 3}
+  projectilePrefab: {fileID: 0}
+  impactEffectPrefab: {fileID: 332406234013219846, guid: d8c837cd69ffaf64abe82e9c7e18c301,
+    type: 3}
