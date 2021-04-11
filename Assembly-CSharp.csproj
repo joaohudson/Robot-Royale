@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\DamageScreenEffect.cs" />
     <Compile Include="Assets\Scripts\DamageText.cs" />
     <Compile Include="Assets\Scripts\DamageTextManager.cs" />
+    <Compile Include="Assets\Scripts\DeathPlane.cs" />
     <Compile Include="Assets\Scripts\DestroyInTime.cs" />
     <Compile Include="Assets\Scripts\DestroyOnDeath.cs" />
     <Compile Include="Assets\Scripts\EnemieAI.cs" />
