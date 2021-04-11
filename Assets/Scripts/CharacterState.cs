@@ -35,12 +35,17 @@ public class CharacterState : MonoBehaviour
     public event Action<DamageEvent> OnDamage;
 
     /// <summary>
+    /// Chamado quando este personagem morrer.
+    /// </summary>
+    public event Action OnDeath;
+
+    /// <summary>
     /// Vida atual do personagem.
     /// </summary>
     public int Health
     {
         get => health;
-        set
+        private set
         {
             health = value >= 0 ? value : 0;
             OnChangeHealth?.Invoke();
@@ -50,6 +55,13 @@ public class CharacterState : MonoBehaviour
     public float HealthNormalized
     {
         get => (float)health / (float)maxHealth;
+    }
+
+    public void Kill()
+    {
+        Health = 0;
+        OnDamage?.Invoke(new DamageEvent { damage = Health, critical = false });
+        OnDeath?.Invoke();
     }
 
     public void TakeDamage(int damage, float criticalChance)
@@ -62,6 +74,9 @@ public class CharacterState : MonoBehaviour
         Health -= damage;
 
         OnDamage?.Invoke(new DamageEvent() { damage = damage, critical = critical});
+
+        if (Health == 0)
+            OnDeath?.Invoke();
 
         if(showDamage)
             DamageTextManager.Instance.AddDamageText(transform.position, damage, critical);

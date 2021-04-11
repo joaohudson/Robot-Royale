@@ -14,17 +14,14 @@ public class DestroyOnDeath : MonoBehaviour
     {
         state = GetComponent<CharacterState>();
 
-        state.OnChangeHealth += OnChangeHealth;
+        state.OnDeath += OnDeath;
     }
 
-    private void OnChangeHealth()
+    private void OnDeath()
     {
-        if(state.Health == 0)
-        {
-            if(destroyedVersion != null)
-                Instantiate(destroyedVersion, transform.position, transform.rotation);
-            
-            Destroy(gameObject);
-        }
+        if (destroyedVersion != null)
+            Instantiate(destroyedVersion, transform.position, transform.rotation);
+
+        Destroy(gameObject);
     }
 }

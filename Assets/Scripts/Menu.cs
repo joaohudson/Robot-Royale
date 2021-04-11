@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
@@ -12,12 +13,25 @@ public class Menu : MonoBehaviour
     }
     #endregion
 
+    [SerializeField]
+    private GameObject endMenu;
+
+    private CharacterState player;
+
     public bool Paused { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
         Play();
+        player = PlayerController.Instance.GetComponent<CharacterState>();
+        player.OnDeath += OnDeath;
+    }
+
+    private void OnDeath()
+    {
+        Pause();
+        endMenu.SetActive(true);
     }
 
     // Update is called once per frame
@@ -34,6 +48,11 @@ public class Menu : MonoBehaviour
                 Pause();
             }
         }
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Play()
