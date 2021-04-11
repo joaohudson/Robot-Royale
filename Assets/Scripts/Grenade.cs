@@ -36,7 +36,9 @@ public class Grenade : MonoBehaviour
             if (cd.CompareTag(target))
             {
                 var state = cd.GetComponent<CharacterState>();
+                var rb = cd.GetComponent<Rigidbody>();
                 state.TakeDamage(damage, 0f);
+                rb.AddExplosionForce(damage * 500f, transform.position, explosionRadius * 2f);
             }
         }
 
