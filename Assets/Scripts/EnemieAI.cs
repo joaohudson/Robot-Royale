@@ -14,8 +14,9 @@ public class EnemieAI : MonoBehaviour
     private float attackRange = 60f;
     [SerializeField]
     private float aimSpeed = 60f;
-    [SerializeField][Range(0f, 1f)]
-    private float precision = 0.4f;
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float precision;
     [SerializeField]
     private float moveSpeed = 20f;
     [SerializeField]
@@ -111,10 +112,9 @@ public class EnemieAI : MonoBehaviour
 
         if (Vector3.Dot(transform.forward, DirectionToPlayer) > .9f)
         {
-            float p = (1f - precision) * 20f;
-            transform.forward = Quaternion.AngleAxis(Random.Range(-p, p), Vector3.up) *
-                                Quaternion.AngleAxis(Random.Range(-p, p), Vector3.right) *
-                                Quaternion.AngleAxis(Random.Range(-p, p), Vector3.forward) * transform.forward;
+            Quaternion inprecision = Quaternion.AngleAxis(Random.Range(0f, 1f - precision) * 35f, Vector3.up);
+            var firePoint = weapon.FirePoint;
+            firePoint.forward = inprecision * (playerState.transform.position - firePoint.position).normalized;
             weapon.Fire();
         }
 

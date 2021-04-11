@@ -33,6 +33,6 @@ public class PlayerStatusDisplay : MonoBehaviour
 
     private void OnChangeAmmo()
     {
-        ammoText.text = $"Ammo: {playerWeapon.Ammo}/\u221e";
+        ammoText.text = $"Ammo: {playerWeapon.Ammo}/{playerWeapon.Projectile.count}";
     }
 }
