@@ -38,6 +38,7 @@ public class WeaponController : MonoBehaviour
     private float interval = 0f;
     private float reloadTime = 0f;
     private int ammo;
+    private float disableLight;
 
     private void Start()
     {
@@ -59,6 +60,22 @@ public class WeaponController : MonoBehaviour
                 Ammo = projectile.count;
             }
         }
+    }
+
+    /// <summary>
+    /// Ponto de onde o disparo é efetuado.
+    /// </summary>
+    public Transform FirePoint
+    {
+        get => firePoint;
+    }
+
+    /// <summary>
+    /// O projétil desta arma.
+    /// </summary>
+    public ProjectileInfo Projectile
+    {
+        get => projectile;
     }
 
     /// <summary>
