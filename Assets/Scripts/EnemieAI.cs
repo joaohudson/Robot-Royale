@@ -51,8 +51,10 @@ public class EnemieAI : MonoBehaviour
         if(state.Health == 0)
         {
             Die();
+            return;//inimigo destruído, não deve fazer mais nada
         }
-        else if (playerState.Health == 0)
+        
+        if (playerState.Health == 0)
         {
             behaviour = Behaviour.IDLE;
         }
@@ -103,6 +105,7 @@ public class EnemieAI : MonoBehaviour
             behaviour = Behaviour.IDLE;
         }
 
+        motor.stoppingDistance = attackRange;
         motor.SetDestination(playerState.transform.position);
     }
 
@@ -118,6 +121,15 @@ public class EnemieAI : MonoBehaviour
             weapon.Fire();
         }
 
+        if (motor.velocity.magnitude == 0f)//faz o inimigo andar aleatoriamente enquanto atira
+        {
+            const float offset = 8f;
+            Vector3 d = new Vector3(Random.Range(-offset, offset), 0f, Random.Range(-offset, offset));
+
+            motor.stoppingDistance = 1f;
+            motor.SetDestination(playerState.transform.position + d);
+        }
+
         if(DistanceToPlayer > attackRange)
         {
             behaviour = Behaviour.RUNNING;
@@ -126,6 +138,7 @@ public class EnemieAI : MonoBehaviour
 
     private void Die()
     {
+        enabled = false;
         if(destroyedVersion != null) Instantiate(destroyedVersion, transform.position, transform.rotation);
         Destroy(gameObject);
     }
