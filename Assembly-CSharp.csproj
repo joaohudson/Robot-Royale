@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\PlayerStatusDisplay.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\ProjectileInfo.cs" />
+    <Compile Include="Assets\Scripts\RobotExplosion.cs" />
     <Compile Include="Assets\Scripts\WeaponAnimator.cs" />
     <Compile Include="Assets\Scripts\WeaponController.cs" />
     <Reference Include="UnityEngine">
