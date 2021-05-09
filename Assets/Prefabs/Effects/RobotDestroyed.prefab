@@ -704,7 +704,7 @@ MonoBehaviour:
   upModifier: 20
   radius: 4
   duration: 10
-  effect: {fileID: 5007349535179241994, guid: 5ab93ec0f366e8e45a9ee9a6a8baa057, type: 3}
+  effect: {fileID: 8883023780034930866, guid: 4f8fe34077aecf04982d558149d7acbb, type: 3}
   chunks:
   - {fileID: 5876891800129270950}
   - {fileID: 5876891800523255203}
