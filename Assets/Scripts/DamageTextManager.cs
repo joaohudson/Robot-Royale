@@ -18,15 +18,13 @@ public class DamageTextManager : MonoBehaviour
     [SerializeField]
     private DamageText damageText;
     [SerializeField]
-    private Transform canvas;
-    [SerializeField]
     private Color defaultDamageColor;
     [SerializeField]
     private Color criticalDamageColor;
 
     public void AddDamageText(Vector3 position, int value, bool critical)
     {
-        var obj = Instantiate(damageText, position + Vector3.right * Random.Range(-.5f, .5f), Quaternion.identity, canvas);
+        var obj = Instantiate(damageText, position + Vector3.right * Random.Range(-.5f, .5f), Quaternion.identity);
         obj.GetComponent<DamageText>().Build(value, critical ? criticalDamageColor : defaultDamageColor);
     }
 }
