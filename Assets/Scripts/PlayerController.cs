@@ -4,8 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(WeaponController))]
 [RequireComponent(typeof(LauncherController))]
-[RequireComponent(typeof(JumpController))]
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
     #region Singleton
@@ -26,6 +25,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 10f;
     [SerializeField]
+    private float jumpForce = 15f;
+    [SerializeField]
     private float maxUp = 30f;
     [SerializeField]
     private float visionSensibility;
@@ -38,8 +39,9 @@ public class PlayerController : MonoBehaviour
     private float angleX, angleY;
     private WeaponController weapon;
     private LauncherController launcher;
-    private JumpController jump;
-    private new Rigidbody rigidbody;
+    private CharacterController controller;
+    private Vector3 velocity = Vector3.zero;//recebe acelerações do jogador
+    private bool isGrounded = false;//se está tocando o chão
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +49,7 @@ public class PlayerController : MonoBehaviour
         mainCamera = Camera.main;
         weapon = GetComponent<WeaponController>();
         launcher = GetComponent<LauncherController>();
-        rigidbody = GetComponent<Rigidbody>();
-        jump = GetComponent<JumpController>();
+        controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -58,9 +59,13 @@ public class PlayerController : MonoBehaviour
         float z = Input.GetAxis("Vertical");
         float mx = Input.GetAxis("Mouse X");
         float my = Input.GetAxis("Mouse Y");
+        Vector3 movement = new Vector3(x, 0f, z) * moveSpeed;//velocidade de movimento controlada pelo jogador
+
+        //calcula a aceleração da gravidade
+        velocity += Physics.gravity * Time.deltaTime;
 
         //Atira caso solicitado
-        if(Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             weapon.Fire();
         }//Se não estiver atirando e nem recarregando, lança granada caso solicitado
@@ -71,7 +76,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            jump.Jump();
+            Debug.Log(isGrounded);
+            if(isGrounded)
+                Jump();
         }
 
         //Recarrega caso solicitado
@@ -86,7 +93,9 @@ public class PlayerController : MonoBehaviour
 
         transform.rotation = Quaternion.AngleAxis(angleX, Vector3.up);
         weaponArm.localRotation = Quaternion.AngleAxis(angleY, Vector3.left);
-        rigidbody.velocity = transform.rotation * new Vector3(x * moveSpeed, rigidbody.velocity.y, z * moveSpeed);
+        controller.Move(transform.rotation * (velocity + movement) * Time.deltaTime);
+        isGrounded = controller.isGrounded;//atualiza depois dos movimentos(necessário para evitar bugs)
+        //rigidbody.velocity = transform.rotation * new Vector3(x * moveSpeed, rigidbody.velocity.y, z * moveSpeed);
     }
 
     private void LateUpdate()
@@ -95,5 +104,10 @@ public class PlayerController : MonoBehaviour
         mainCamera.transform.rotation = transform.rotation * weaponArm.localRotation * Quaternion.AngleAxis(cameraInclination, Vector3.right);
 
         mainCamera.transform.position -= mainCamera.transform.forward * cameraDistance;
+    }
+
+    private void Jump()
+    {
+        velocity.y = jumpForce;
     }
 }
