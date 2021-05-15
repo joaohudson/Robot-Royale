@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class Grenade : MonoBehaviour
@@ -10,8 +11,6 @@ public class Grenade : MonoBehaviour
     private float explosionRadius = 10f;
     [SerializeField]
     private int damage = 80;
-    [SerializeField]
-    private string target;
     [SerializeField]
     private GameObject effect;
 
@@ -33,12 +32,12 @@ public class Grenade : MonoBehaviour
 
         foreach(var cd in cds)
         {
-            if (cd.CompareTag(target))
+            if (cd.CompareTag("Enemie"))
             {
                 var state = cd.GetComponent<CharacterState>();
-                var rb = cd.GetComponent<Rigidbody>();
+                var nv = cd.GetComponent<NavMeshAgent>();
                 state.TakeDamage(damage, 0f);
-                rb.AddExplosionForce(damage * 500f, transform.position, explosionRadius * 2f);
+                nv.velocity = (nv.transform.position - transform.position).normalized * 20f;
             }
         }
 
