@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   criticalChance: 0.1
-  fireRate: 16
+  fireRate: 6
   spreadAmount: 1
   spreadAngle: 0
-  count: 30
+  count: 300
   range: 100
   effectPrefab: {fileID: 3818989462859787515, guid: 3123f2a7d6ccf374180d2e395cfabc5e,
     type: 3}
   projectilePrefab: {fileID: 0}
   impactEffectPrefab: {fileID: 332406234013219846, guid: d8c837cd69ffaf64abe82e9c7e18c301,
     type: 3}
+  sound: {fileID: 8300000, guid: ad1fa24391305bb4cae65fa56e23aec2, type: 3}
+  soundLoop: 0

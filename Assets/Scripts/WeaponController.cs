@@ -34,15 +34,24 @@ public class WeaponController : MonoBehaviour
     private Transform firePoint;
     [SerializeField]
     private string target;
+    [SerializeField]
+    private AudioSource fireSound;
+    [SerializeField]
+    private AudioSource reloadSound;
 
     private float interval = 0f;
     private float reloadTime = 0f;
     private int ammo;
-    private float disableLight;
+    private float disableSoundTime = 0f;
 
     private void Start()
     {
         Ammo = projectile.count;
+        if(fireSound != null)
+        {
+            fireSound.clip = projectile.sound;
+            fireSound.loop = projectile.soundLoop;
+        }
     }
 
     private void Update()
@@ -50,6 +59,16 @@ public class WeaponController : MonoBehaviour
         if(interval > 0f)
         {
             interval -= Time.deltaTime;
+        }
+
+        //atualiza tempo para desligar o som do projétil.
+        if(disableSoundTime > 0f)
+        {
+            disableSoundTime -= Time.deltaTime;
+            if(disableSoundTime <= 0f)
+            {
+                fireSound.Stop();
+            }
         }
 
         if(reloadTime > 0f)
@@ -111,6 +130,15 @@ public class WeaponController : MonoBehaviour
         interval = 1f / projectile.fireRate;
         Instantiate(projectile.effectPrefab, firePoint.position, Quaternion.identity, transform);
 
+        if(fireSound != null)
+        {
+            if(!projectile.soundLoop || !fireSound.isPlaying)
+            {
+                fireSound.Play();
+            }
+            disableSoundTime = fireSound.clip.length;
+        }
+
         if (projectile.UseRayCast)
         {
             FireRayCast();
@@ -127,6 +155,7 @@ public class WeaponController : MonoBehaviour
         if (ammo == projectile.count || Reloading)
             return;
 
+        reloadSound.Play();
         reloadTime = ProjectileInfo.RELOAD_TIME;
         OnReload?.Invoke();
     }
