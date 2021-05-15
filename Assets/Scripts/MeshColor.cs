@@ -29,4 +29,13 @@ public class MeshColor : MonoBehaviour
         propertie.SetColor("_Color", color);
         meshRenderer.SetPropertyBlock(propertie);
     }
+
+    /// <summary>
+    /// Cor desta malha.
+    /// </summary>
+    public Color Color
+    {
+        get => color;
+        set => color = value;
+    }
 }

@@ -53,6 +53,10 @@ public class ProjectileInfo : ScriptableObject
     /// </summary>
     public GameObject impactEffectPrefab;
     /// <summary>
+    /// Marca que o projétil deixa.
+    /// </summary>
+    public GameObject impactPaintEffect;
+    /// <summary>
     /// Som do projétil.
     /// </summary>
     public AudioClip sound;

@@ -175,6 +175,11 @@ public class WeaponController : MonoBehaviour
                     state.TakeDamage(projectile.damage, projectile.criticalChance);
                 }
                 Instantiate(projectile.impactEffectPrefab, hit.point, Quaternion.identity, hit.collider.transform);
+                
+                if(projectile.impactPaintEffect != null && hit.collider.gameObject.isStatic)
+                {
+                    Instantiate(projectile.impactPaintEffect, hit.point, Quaternion.identity).GetComponent<PaintEffect>().Build(hit);
+                }
             }
 
             float sa = projectile.spreadAngle;
