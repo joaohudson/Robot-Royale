@@ -42,16 +42,10 @@ public class WeaponController : MonoBehaviour
     private float interval = 0f;
     private float reloadTime = 0f;
     private int ammo;
-    private float disableSoundTime = 0f;
 
     private void Start()
     {
-        Ammo = projectile.count;
-        if(fireSound != null)
-        {
-            fireSound.clip = projectile.sound;
-            fireSound.loop = projectile.soundLoop;
-        }
+        InitProjectile();
     }
 
     private void Update()
@@ -61,16 +55,6 @@ public class WeaponController : MonoBehaviour
             interval -= Time.deltaTime;
         }
 
-        //atualiza tempo para desligar o som do projétil.
-        if(disableSoundTime > 0f)
-        {
-            disableSoundTime -= Time.deltaTime;
-            if(disableSoundTime <= 0f)
-            {
-                fireSound.Stop();
-            }
-        }
-
         if(reloadTime > 0f)
         {
             reloadTime -= Time.deltaTime;
@@ -78,6 +62,18 @@ public class WeaponController : MonoBehaviour
             {
                 Ammo = projectile.count;
             }
+        }
+    }
+
+    /// <summary>
+    /// Inicializa o projétil.
+    /// </summary>
+    private void InitProjectile()
+    {
+        Ammo = projectile.count;
+        if (fireSound != null)
+        {
+            fireSound.clip = projectile.sound;
         }
     }
 
@@ -95,6 +91,10 @@ public class WeaponController : MonoBehaviour
     public ProjectileInfo Projectile
     {
         get => projectile;
+        set {
+            projectile = value;
+            InitProjectile();
+        }
     }
 
     /// <summary>
@@ -132,11 +132,7 @@ public class WeaponController : MonoBehaviour
 
         if(fireSound != null)
         {
-            if(!projectile.soundLoop || !fireSound.isPlaying)
-            {
-                fireSound.Play();
-            }
-            disableSoundTime = fireSound.clip.length;
+            fireSound.Play();
         }
 
         if (projectile.UseRayCast)
@@ -155,7 +151,7 @@ public class WeaponController : MonoBehaviour
         if (ammo == projectile.count || Reloading)
             return;
 
-        reloadSound.Play();
+        reloadSound?.Play();
         reloadTime = ProjectileInfo.RELOAD_TIME;
         OnReload?.Invoke();
     }

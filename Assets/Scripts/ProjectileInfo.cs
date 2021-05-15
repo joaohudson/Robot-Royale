@@ -61,11 +61,6 @@ public class ProjectileInfo : ScriptableObject
     /// </summary>
     public AudioClip sound;
     /// <summary>
-    /// Se o som do projétil deve ser reproduzido em loop.
-    /// Útil para projéteis com fire rate muito alto.
-    /// </summary>
-    public bool soundLoop;
-    /// <summary>
     /// Projétil não é simulado por um objeto,
     /// mas sim por um cálculo de ray cast imediato.
     /// </summary>
