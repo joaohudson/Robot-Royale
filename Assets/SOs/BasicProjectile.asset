@@ -24,5 +24,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   impactEffectPrefab: {fileID: 332406234013219846, guid: d8c837cd69ffaf64abe82e9c7e18c301,
     type: 3}
+  impactPaintEffect: {fileID: 6023726685771295406, guid: 53fb9c3043ad4c44c9dddb36a71f5fda,
+    type: 3}
   sound: {fileID: 8300000, guid: ad1fa24391305bb4cae65fa56e23aec2, type: 3}
   soundLoop: 0
