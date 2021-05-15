@@ -176,7 +176,7 @@ public class WeaponController : MonoBehaviour
                 }
                 Instantiate(projectile.impactEffectPrefab, hit.point, Quaternion.identity, hit.collider.transform);
                 
-                if(projectile.impactPaintEffect != null && hit.collider.gameObject.isStatic)
+                if(projectile.impactPaintEffect != null && hit.collider.CompareTag("Map"))
                 {
                     Instantiate(projectile.impactPaintEffect, hit.point, Quaternion.identity).GetComponent<PaintEffect>().Build(hit);
                 }
