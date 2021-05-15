@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\MeshColor.cs" />
     <Compile Include="Assets\Scripts\PaintEffect.cs" />
+    <Compile Include="Assets\Scripts\PickupProjectile.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerStatusDisplay.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
