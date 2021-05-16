@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa796bf006eb9984fa41b5699b86804d, type: 3}
-  m_Name: BasicProjectile
+  m_Name: MachineGun
   m_EditorClassIdentifier: 
-  damage: 10
-  criticalChance: 0.1
-  fireRate: 6
+  damage: 5
+  criticalChance: 0.315
+  fireRate: 16
   spreadAmount: 1
   spreadAngle: 0
-  count: 300
+  count: 60
   range: 100
   effectPrefab: {fileID: 3818989462859787515, guid: 3123f2a7d6ccf374180d2e395cfabc5e,
     type: 3}
   projectilePrefab: {fileID: 0}
-  impactEffectPrefab: {fileID: 332406234013219846, guid: d8c837cd69ffaf64abe82e9c7e18c301,
+  impactEffectPrefab: {fileID: 5765011138304884542, guid: e026ef4eb9d6e1f4db820e33d958f566,
     type: 3}
   impactPaintEffect: {fileID: 6023726685771295406, guid: 53fb9c3043ad4c44c9dddb36a71f5fda,
     type: 3}
-  sound: {fileID: 8300000, guid: ad1fa24391305bb4cae65fa56e23aec2, type: 3}
-  soundLoop: 0
+  sound: {fileID: 8300000, guid: b3b492dde0b5d2a4cb84f8df292792bb, type: 3}
