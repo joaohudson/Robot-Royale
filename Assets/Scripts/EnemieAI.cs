@@ -116,9 +116,9 @@ public class EnemieAI : MonoBehaviour
         if (Vector3.Dot(transform.forward, DirectionToPlayer) > .9f)
         {
             Quaternion inprecision = Quaternion.AngleAxis(Random.Range(0f, 1f - precision) * 35f, Vector3.up);
-            var firePoint = weapon.FirePoint;
-            firePoint.forward = inprecision * (playerState.transform.position - firePoint.position).normalized;
-            weapon.Fire();
+            var firePoint = weapon.FirePoint.position;
+            firePoint = inprecision * (playerState.transform.position - firePoint).normalized;
+            weapon.Fire(firePoint);
         }
 
         if (motor.velocity.magnitude == 0f)//faz o inimigo andar aleatoriamente enquanto atira

@@ -116,7 +116,8 @@ public class WeaponController : MonoBehaviour
     /// <summary>
     /// Dispara um projétil.
     /// </summary>
-    public void Fire()
+    /// <param name="direction">A direção do projétil.</param>
+    public void Fire(Vector3 direction)
     {
         if (interval > 0f || reloadTime > 0f)
             return;
@@ -135,13 +136,13 @@ public class WeaponController : MonoBehaviour
             fireSound.Play();
         }
 
-        if (projectile.UseRayCast)
+        if (projectile.isPhysicProjectile)
         {
-            FireRayCast();
+            Instantiate(projectile.projectilePrefab, firePoint.position, Quaternion.LookRotation(direction)).GetComponent<Projectile>().Build(target);
         }
         else
         {
-            Instantiate(projectile.projectilePrefab, firePoint.position, firePoint.rotation).GetComponent<Projectile>().Build(target);
+            FireRayCast(direction);
         }
     }
 
@@ -156,14 +157,14 @@ public class WeaponController : MonoBehaviour
         OnReload?.Invoke();
     }
 
-    private void FireRayCast()
+    private void FireRayCast(Vector3 direction)
     {
         RaycastHit hit;
         Quaternion rot = Quaternion.identity;
 
         for(int i = 0; i < projectile.spreadAmount; i++)
         {
-            if (Physics.Raycast(firePoint.position, rot * firePoint.forward, out hit, projectile.range))
+            if (Physics.Raycast(firePoint.position, rot * direction, out hit, projectile.range))
             {
                 if (hit.collider.CompareTag(target))
                 {

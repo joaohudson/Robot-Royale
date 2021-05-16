@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(WeaponController))]
 [RequireComponent(typeof(LauncherController))]
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(AimController))]
 public class PlayerController : MonoBehaviour
 {
     #region Singleton
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private float cameraDistance = 5f;
     [SerializeField]
     private float cameraInclination = 30f;
+    [SerializeField]
+    private float cameraUpOffset = 1f;
 
     [Header("Gameplay Settings")]
     [SerializeField]
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private Camera mainCamera;
     private float angleX, angleY;
+    private AimController aimController;
     private WeaponController weapon;
     private LauncherController launcher;
     private CharacterController controller;
@@ -50,6 +54,7 @@ public class PlayerController : MonoBehaviour
         weapon = GetComponent<WeaponController>();
         launcher = GetComponent<LauncherController>();
         controller = GetComponent<CharacterController>();
+        aimController = GetComponent<AimController>();
     }
 
     // Update is called once per frame
@@ -67,7 +72,7 @@ public class PlayerController : MonoBehaviour
         //Atira caso solicitado
         if (Input.GetButton("Fire1"))
         {
-            weapon.Fire();
+            weapon.Fire(aimController.Direction);
         }//Se não estiver atirando e nem recarregando, lança granada caso solicitado
         else if (Input.GetKeyDown(KeyCode.Q) && !weapon.Reloading)
         {
@@ -103,6 +108,7 @@ public class PlayerController : MonoBehaviour
         mainCamera.transform.rotation = transform.rotation * weaponArm.localRotation * Quaternion.AngleAxis(cameraInclination, Vector3.right);
 
         mainCamera.transform.position -= mainCamera.transform.forward * cameraDistance;
+        mainCamera.transform.position += mainCamera.transform.up * cameraUpOffset;
     }
 
     private void Jump()
