@@ -12,16 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa796bf006eb9984fa41b5699b86804d, type: 3}
   m_Name: ExplosionProjectile
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 30
   criticalChance: 0.1
   fireRate: 1
   spreadAmount: 1
   spreadAngle: 0
-  count: 30
+  count: 4
   range: 100
   effectPrefab: {fileID: 3818989462859787515, guid: 3123f2a7d6ccf374180d2e395cfabc5e,
     type: 3}
-  projectilePrefab: {fileID: 6489174669104522501, guid: d985a42acc6b8db4ba4b05babeb9d7a4,
-    type: 3}
   impactEffectPrefab: {fileID: 5007349535179241994, guid: 5ab93ec0f366e8e45a9ee9a6a8baa057,
+    type: 3}
+  impactPaintEffect: {fileID: 0}
+  sound: {fileID: 8300000, guid: c344136c2faa62548b83cc7e98a44a5a, type: 3}
+  isPhysicProjectile: 1
+  projectilePrefab: {fileID: 6489174669104522501, guid: d985a42acc6b8db4ba4b05babeb9d7a4,
     type: 3}
