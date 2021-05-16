@@ -48,7 +48,10 @@ public class EnemieAI : MonoBehaviour
 
     private void Update()
     {
-        if(state.Health == 0)
+        if (Menu.Instance.Paused)//checa se o jogo está pausado
+            return;
+
+        if (state.Health == 0)
         {
             Die();
             return;//inimigo destruído, não deve fazer mais nada

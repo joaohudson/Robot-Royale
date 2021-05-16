@@ -60,6 +60,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Menu.Instance.Paused)//checa se o jogo está pausado
+            return;
+
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         float mx = Input.GetAxis("Mouse X");

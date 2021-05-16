@@ -18,6 +18,8 @@ public class Menu : MonoBehaviour
     [SerializeField]
     private GameObject winMenu;
     [SerializeField]
+    private GameObject pauseMenu;
+    [SerializeField]
     private GameObject aim;
 
     public bool Paused { get; private set; }
@@ -56,7 +58,7 @@ public class Menu : MonoBehaviour
             }
             else
             {
-                Pause();
+                Pause(true);
             }
         }
     }
@@ -74,12 +76,24 @@ public class Menu : MonoBehaviour
         Paused = false;
     }
 
-    public void Pause()
+    /// <summary>
+    /// Pausa o jogo.
+    /// </summary>
+    /// <param name="showMenu">Se deve exibir a janela do menu de pausa.</param>
+    public void Pause(bool showMenu = false)
     {
+        if (showMenu)
+            pauseMenu.SetActive(true);
+
         Time.timeScale = 0f;
         aim.SetActive(false);
         LockMouse(false);
         Paused = true;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     private void LockMouse(bool lockMouse)
