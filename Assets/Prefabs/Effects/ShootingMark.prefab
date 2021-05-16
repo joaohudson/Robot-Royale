@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1557104141830725959}
   - component: {fileID: 9034501366954742017}
   m_Layer: 0
-  m_Name: LightBase
+  m_Name: ShootingMark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,4 +140,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963ee54ac33516f46b4919e1bc132b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0, b: 0, a: 1}
+  color: {r: 1, g: 0.20881349, b: 0, a: 1}
