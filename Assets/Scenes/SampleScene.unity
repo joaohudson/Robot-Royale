@@ -30372,6 +30372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loseMenu: {fileID: 1172250517}
   winMenu: {fileID: 1801839291}
+  aim: {fileID: 52511268}
 --- !u!4 &844171981
 Transform:
   m_ObjectHideFlags: 0

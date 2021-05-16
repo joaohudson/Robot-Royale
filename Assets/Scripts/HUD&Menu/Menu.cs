@@ -17,6 +17,8 @@ public class Menu : MonoBehaviour
     private GameObject loseMenu;
     [SerializeField]
     private GameObject winMenu;
+    [SerializeField]
+    private GameObject aim;
 
     public bool Paused { get; private set; }
 
@@ -67,6 +69,7 @@ public class Menu : MonoBehaviour
     public void Play()
     {
         Time.timeScale = 1f;
+        aim.SetActive(true);
         LockMouse(true);
         Paused = false;
     }
@@ -74,6 +77,7 @@ public class Menu : MonoBehaviour
     public void Pause()
     {
         Time.timeScale = 0f;
+        aim.SetActive(false);
         LockMouse(false);
         Paused = true;
     }
