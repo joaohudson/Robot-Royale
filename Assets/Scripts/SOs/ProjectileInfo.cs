@@ -5,6 +5,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SO/Projectile")]
 public class ProjectileInfo : ScriptableObject
 {
+    private void OnValidate()
+    {
+        isPhysicProjectile = projectilePrefab != null;
+
+        if (isPhysicProjectile)
+        {
+            spreadAmount = 1;
+            spreadAngle = 0;
+        }
+    }
+
     /// <summary>
     /// Tempo para recarregar a arma.
     /// </summary>
@@ -44,11 +55,6 @@ public class ProjectileInfo : ScriptableObject
     /// </summary>
     public GameObject effectPrefab;
     /// <summary>
-    /// Prefab do projétil caso ele seja um objeto
-    /// ao invés de raycast.
-    /// </summary>
-    public GameObject projectilePrefab;
-    /// <summary>
     /// Efeito de impacto do projétil.
     /// </summary>
     public GameObject impactEffectPrefab;
@@ -60,9 +66,17 @@ public class ProjectileInfo : ScriptableObject
     /// Som do projétil.
     /// </summary>
     public AudioClip sound;
+
+    [Header("Physic Projectile")]
+
     /// <summary>
-    /// Projétil não é simulado por um objeto,
-    /// mas sim por um cálculo de ray cast imediato.
+    /// Se o projétil é um projétil físico, simulado por um GameObject.
+    /// Do contrário é simulado por um Raycast.
     /// </summary>
-    public bool UseRayCast { get => projectilePrefab == null; }
+    public bool isPhysicProjectile;
+    /// <summary>
+    /// Prefab do projétil caso ele seja um objeto
+    /// ao invés de raycast.
+    /// </summary>
+    public GameObject projectilePrefab;
 }
