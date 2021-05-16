@@ -14,9 +14,9 @@ public class Menu : MonoBehaviour
     #endregion
 
     [SerializeField]
-    private GameObject endMenu;
-
-    private CharacterState player;
+    private GameObject loseMenu;
+    [SerializeField]
+    private GameObject winMenu;
 
     public bool Paused { get; private set; }
 
@@ -24,14 +24,23 @@ public class Menu : MonoBehaviour
     void Start()
     {
         Play();
-        player = PlayerController.Instance.GetComponent<CharacterState>();
+        var player = PlayerController.Instance.GetComponent<CharacterState>();
         player.OnDeath += OnDeath;
+
+        var enemieManager = EnemieManager.Instance;
+        enemieManager.OnClearEnemies += OnClearEnemies;
+    }
+
+    private void OnClearEnemies()
+    {
+        Pause();
+        winMenu.SetActive(true);
     }
 
     private void OnDeath()
     {
         Pause();
-        endMenu.SetActive(true);
+        loseMenu.SetActive(true);
     }
 
     // Update is called once per frame

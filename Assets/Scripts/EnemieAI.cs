@@ -138,7 +138,7 @@ public class EnemieAI : MonoBehaviour
 
     private void Die()
     {
-        enabled = false;
+        EnemieManager.Instance.RegisterDeath();
         if(destroyedVersion != null) Instantiate(destroyedVersion, transform.position, transform.rotation);
         Destroy(gameObject);
     }

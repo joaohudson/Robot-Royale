@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\DestroyInTime.cs" />
     <Compile Include="Assets\Scripts\DestroyOnDeath.cs" />
     <Compile Include="Assets\Scripts\EnemieAI.cs" />
+    <Compile Include="Assets\Scripts\EnemieManager.cs" />
     <Compile Include="Assets\Scripts\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\Grenade.cs" />
     <Compile Include="Assets\Scripts\LauncherController.cs" />
