@@ -28,6 +28,6 @@ public class DamageText : MonoBehaviour
         transform.position += Vector3.up * (Time.deltaTime * 5f);
         text.transform.localScale = baseScale * size;
         duration -= Time.deltaTime * 2f;
-        size = Mathf.Sqrt(duration);
+        size = Mathf.Sqrt(duration < 0 ? 0 : duration);
     }
 }
