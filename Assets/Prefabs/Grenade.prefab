@@ -110,8 +110,7 @@ MonoBehaviour:
   explosionTime: 3
   explosionRadius: 4
   damage: 80
-  target: Enemie
-  effect: {fileID: 8883023780034930866, guid: 4f8fe34077aecf04982d558149d7acbb, type: 3}
+  effect: {fileID: 5007349535179241994, guid: 5ab93ec0f366e8e45a9ee9a6a8baa057, type: 3}
 --- !u!54 &2121552767564228753
 Rigidbody:
   m_ObjectHideFlags: 0
